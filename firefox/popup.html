@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Detox</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      width: 320px;
+      min-height: 200px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+      background: #fff;
+      color: #333;
+      padding: 16px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .icon {
+      width: 24px;
+      height: 24px;
+      background: #ff0000;
+      border-radius: 4px;
+      margin-right: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .main-action {
+      margin-bottom: 16px;
+    }
+
+    .close-save-btn {
+      width: 100%;
+      background: #ff0000;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .close-save-btn:hover {
+      background: #d00000;
+    }
+
+    .close-save-btn:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+
+    .close-save-btn:focus {
+      outline: 2px solid #ff0000;
+      outline-offset: 2px;
+    }
+
+    .reopen-all-btn {
+      width: 100%;
+      background: transparent;
+      color: #ff0000;
+      border: 2px solid #ff0000;
+      border-radius: 8px;
+      padding: 10px 16px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-top: 8px;
+    }
+
+    .reopen-all-btn:hover {
+      background: #ff0000;
+      color: white;
+    }
+
+    .reopen-all-btn:disabled {
+      background: transparent;
+      color: #ccc;
+      border-color: #ccc;
+      cursor: not-allowed;
+    }
+
+    .reopen-all-btn:focus {
+      outline: 2px solid #ff0000;
+      outline-offset: 2px;
+    }
+
+    .stats {
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 16px;
+    }
+
+    .stat-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 4px;
+    }
+
+    .stat-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .stat-value {
+      font-weight: 500;
+      color: #333;
+    }
+
+    .toggle-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+    }
+
+    .toggle-label {
+      font-size: 14px;
+      color: #333;
+    }
+
+    .toggle {
+      position: relative;
+      width: 44px;
+      height: 24px;
+      background: #ccc;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .toggle.enabled {
+      background: #ff0000;
+    }
+
+    .toggle::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 20px;
+      height: 20px;
+      background: white;
+      border-radius: 50%;
+      transition: transform 0.2s ease;
+    }
+
+    .toggle.enabled::after {
+      transform: translateX(20px);
+    }
+
+    .status-message {
+      margin-top: 12px;
+      padding: 8px 12px;
+      background: #e8f5e8;
+      border: 1px solid #4caf50;
+      border-radius: 4px;
+      font-size: 12px;
+      color: #2e7d32;
+      text-align: center;
+    }
+
+    .status-message.error {
+      background: #ffeaea;
+      border-color: #f44336;
+      color: #c62828;
+    }
+
+    .loading {
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .spinner {
+      width: 16px;
+      height: 16px;
+      border: 2px solid transparent;
+      border-top: 2px solid currentColor;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .footer {
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px solid #e0e0e0;
+      text-align: center;
+    }
+
+    .footer-text {
+      font-size: 11px;
+      color: #999;
+    }
+
+    /* Dark mode support */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: #1a1a1a;
+        color: #e0e0e0;
+      }
+
+      .title {
+        color: #e0e0e0;
+      }
+
+      .stats {
+        background: #2a2a2a;
+      }
+
+      .stat-item {
+        color: #ccc;
+      }
+
+      .stat-value {
+        color: #e0e0e0;
+      }
+
+      .toggle-label {
+        color: #e0e0e0;
+      }
+
+      .header {
+        border-bottom-color: #444;
+      }
+
+      .footer {
+        border-top-color: #444;
+      }
+    }
+
+    /* High contrast mode */
+    @media (prefers-contrast: high) {
+      .close-save-btn {
+        border: 2px solid #000;
+      }
+
+      .toggle {
+        border: 2px solid #000;
+      }
+    }
+
+    /* Saved tabs section */
+    .saved-tabs-section {
+      margin-bottom: 16px;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    .saved-tabs-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .saved-tabs-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: #333;
+    }
+
+    .view-all-btn {
+      background: transparent;
+      color: #ff0000;
+      border: 1px solid #ff0000;
+      border-radius: 4px;
+      padding: 4px 8px;
+      font-size: 11px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .view-all-btn:hover {
+      background: #ff0000;
+      color: white;
+    }
+
+    .saved-tabs-list {
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 8px;
+      max-height: 160px;
+      overflow-y: auto;
+    }
+
+    .saved-tab-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      margin-bottom: 4px;
+    }
+
+    .saved-tab-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .saved-tab-item:hover {
+      background: rgba(255, 0, 0, 0.1);
+    }
+
+    .saved-tab-thumbnail {
+      width: 20px;
+      height: 20px;
+      border-radius: 2px;
+      background: #ddd;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .saved-tab-thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .saved-tab-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .saved-tab-title {
+      font-size: 12px;
+      color: #333;
+      white-space: nowrap;
+      overflow: hidden;
+      text-decoration: none;
+      text-overflow: ellipsis;
+    }
+
+    .saved-tab-date {
+      font-size: 10px;
+      color: #666;
+    }
+
+    .saved-tab-actions {
+      flex-shrink: 0;
+    }
+
+    .delete-tab-btn {
+      background: transparent;
+      border: none;
+      color: #999;
+      cursor: pointer;
+      padding: 2px;
+      border-radius: 2px;
+      font-size: 12px;
+    }
+
+    .delete-tab-btn:hover {
+      color: #f44336;
+      background: rgba(244, 67, 54, 0.1);
+    }
+
+    .empty-tabs-message {
+      text-align: center;
+      color: #666;
+      font-size: 12px;
+      padding: 20px;
+    }
+
+    /* Dark mode for saved tabs */
+    @media (prefers-color-scheme: dark) {
+      .saved-tabs-title {
+        color: #e0e0e0;
+      }
+
+      .saved-tabs-list {
+        background: #2a2a2a;
+      }
+
+      .saved-tab-item:hover {
+        background: rgba(255, 0, 0, 0.2);
+      }
+
+      .saved-tab-title {
+        color: #e0e0e0;
+      }
+
+      .saved-tab-date {
+        color: #aaa;
+      }
+
+      .saved-tab-thumbnail {
+        background: #444;
+      }
+
+      .empty-tabs-message {
+        color: #aaa;
+      }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .close-save-btn,
+      .toggle,
+      .toggle::after,
+      .saved-tab-item,
+      .delete-tab-btn,
+      .view-all-btn {
+        transition: none;
+      }
+
+      .spinner {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="icon">🎯</div>
+    <div class="title">YouTube Detox</div>
+  </div>
+
+  <div class="main-action">
+    <button id="closeSaveBtn" class="close-save-btn" type="button">
+      <span id="actionText">Close & Save YouTube Tabs</span>
+      <div id="actionSpinner" class="spinner" style="display: none;"></div>
+    </button>
+    <button id="reopenAllBtn" class="reopen-all-btn" type="button">
+      Reopen All Saved Tabs
+    </button>
+  </div>
+
+  <div class="stats">
+    <div class="stat-item">
+      <span>Open YouTube Tabs:</span>
+      <span id="openTabsCount" class="stat-value">-</span>
+    </div>
+    <div class="stat-item">
+      <span>Saved Tabs:</span>
+      <span id="savedTabsCount" class="stat-value">-</span>
+    </div>
+  </div>
+
+  <div class="saved-tabs-section">
+    <div class="saved-tabs-header">
+      <div class="saved-tabs-title">Recent Saved Tabs</div>
+      <button id="clearAllTabsBtn" class="view-all-btn" type="button">Clear All</button>
+    </div>
+    <div id="savedTabsList" class="saved-tabs-list">
+      <div class="empty-tabs-message">No saved tabs yet</div>
+    </div>
+  </div>
+
+  <div class="toggle-section">
+    <label class="toggle-label" for="extensionToggle">Extension Enabled</label>
+    <div id="extensionToggle" class="toggle" role="switch" tabindex="0" aria-label="Toggle extension on/off">
+    </div>
+  </div>
+
+  <div id="statusMessage" class="status-message" style="display: none;"></div>
+
+  <div class="footer">
+    <div class="footer-text">Mindful YouTube browsing</div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

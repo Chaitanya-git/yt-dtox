@@ -1,0 +1,292 @@
+/**
+ * YouTube Detox Extension Styles
+ * Clean, minimal design following YouTube's design language
+ */
+
+/* Shorts overlay styles */
+.yt-detox-overlay {
+  position: relative;
+  background: rgba(0, 0, 0, 0.9);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+.yt-detox-overlay-content {
+  text-align: center;
+  color: #fff;
+  padding: 20px;
+}
+
+.yt-detox-overlay-title {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 12px;
+  font-family: "Roboto", sans-serif;
+}
+
+.yt-detox-toggle-btn {
+  background: #ff0000;
+  color: white;
+  border: none;
+  border-radius: 18px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-family: "Roboto", sans-serif;
+}
+
+.yt-detox-toggle-btn:hover {
+  background: #d00000;
+}
+
+.yt-detox-toggle-btn:focus {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+/* Saved tabs container */
+#yt-detox-saved-tabs {
+  margin: 24px 0;
+  padding: 0;
+  width: 100%;
+  max-width: none;
+}
+
+.yt-detox-saved-tabs-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding: 0 4px;
+}
+
+.yt-detox-saved-tabs-title {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--yt-spec-text-primary);
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+.yt-detox-clear-all-btn {
+  background: transparent;
+  color: var(--yt-spec-text-secondary);
+  border: 1px solid var(--yt-spec-outline);
+  border-radius: 18px;
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: "Roboto", sans-serif;
+}
+
+.yt-detox-clear-all-btn:hover {
+  background: var(--yt-spec-badge-chip-background);
+  border-color: var(--yt-spec-text-secondary);
+}
+
+/* Saved tabs grid */
+.yt-detox-saved-tabs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+  width: 100%;
+}
+
+.yt-detox-saved-tab {
+  display: flex;
+  flex-direction: column;
+  background: var(--yt-spec-base-background);
+  border: 1px solid var(--yt-spec-outline);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.yt-detox-saved-tab:hover {
+  border-color: var(--yt-spec-text-secondary);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.yt-detox-saved-tab-thumbnail {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: var(--yt-spec-outline);
+  overflow: hidden;
+}
+
+.yt-detox-saved-tab-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.yt-detox-saved-tab-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: var(--yt-spec-outline);
+  color: var(--yt-spec-text-secondary);
+  font-size: 24px;
+}
+
+.yt-detox-saved-tab-content {
+  padding: 12px;
+  flex: 1;
+}
+
+.yt-detox-saved-tab-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--yt-spec-text-primary);
+  line-height: 1.4;
+  margin-bottom: 4px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+}
+
+.yt-detox-saved-tab-title:hover {
+  color: var(--yt-spec-call-to-action);
+}
+
+.yt-detox-saved-tab-channel {
+  font-size: 12px;
+  color: var(--yt-spec-text-secondary);
+  margin-bottom: 8px;
+  font-family: "Roboto", sans-serif;
+}
+
+.yt-detox-saved-tab-date {
+  font-size: 11px;
+  color: var(--yt-spec-text-secondary);
+  margin-bottom: 8px;
+  font-family: "Roboto", sans-serif;
+}
+
+.yt-detox-saved-tab-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.yt-detox-delete-btn {
+  background: transparent;
+  color: var(--yt-spec-text-secondary);
+  border: 1px solid var(--yt-spec-outline);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: "Roboto", sans-serif;
+}
+
+.yt-detox-delete-btn:hover {
+  background: var(--yt-spec-error-background);
+  color: var(--yt-spec-error-text);
+  border-color: var(--yt-spec-error-text);
+}
+
+/* Empty state */
+.yt-detox-empty-state {
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--yt-spec-text-secondary);
+}
+
+.yt-detox-empty-state-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+.yt-detox-empty-state-title {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  font-family: "Roboto", sans-serif;
+}
+
+.yt-detox-empty-state-description {
+  font-size: 14px;
+  line-height: 1.4;
+  font-family: "Roboto", sans-serif;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .yt-detox-overlay {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+  }
+  
+  .yt-detox-overlay-content {
+    color: #fff;
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .yt-detox-saved-tabs-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .yt-detox-saved-tabs-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .yt-detox-overlay {
+    background: rgba(0, 0, 0, 0.95);
+    border: 2px solid #fff;
+  }
+  
+  .yt-detox-toggle-btn {
+    border: 2px solid #fff;
+  }
+  
+  .yt-detox-saved-tab {
+    border-width: 2px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .yt-detox-overlay,
+  .yt-detox-toggle-btn,
+  .yt-detox-saved-tab,
+  .yt-detox-clear-all-btn,
+  .yt-detox-delete-btn {
+    transition: none;
+  }
+}
+
+/* Focus management for accessibility */
+.yt-detox-overlay:focus-within {
+  outline: 2px solid var(--yt-spec-call-to-action);
+  outline-offset: 2px;
+}
+
+/* Hidden class for programmatic hiding */
+.yt-detox-hidden {
+  display: none !important;
+}
