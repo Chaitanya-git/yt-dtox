@@ -1,13 +1,20 @@
-# YouTube Detox Extension
+# <img src="firefox/icons/icon.ico" height="40" width="40"> YouTube Detox Extension
 
 A cross-browser extension designed to help users break free from YouTube doomscrolling by blocking shorts and providing mindful tab management.
 
-![YouTube Detox Icon](firefox/icons/icon.ico)
+
+<img width="494" height="757" alt="image" src="https://github.com/user-attachments/assets/8cd1d85a-87e2-4b57-a9ba-9a012529ec75" />
+
 
 ## 🎯 Features
+<img width="2073" height="581" alt="image" align="center" src="https://github.com/user-attachments/assets/e9ed9d5b-9dc1-4136-b29c-fcaa3d2569c7" />
 
 - **YouTube Shorts Blocking**: Automatically hides YouTube Shorts in feeds with optional temporary visibility toggle
 - **Scroll Prevention**: Completely disables scrolling on YouTube Shorts pages to prevent endless scrolling
+
+![Untitled video - Made with Clipchamp (2) (1)](https://github.com/user-attachments/assets/c84d217c-a748-4255-9ff9-38a83d9e6d69)
+
+
 - **Tab Management**: Close and save all YouTube tabs with one click, then view them later on the homepage
 - **Reopen All Tabs**: Quickly restore all saved YouTube tabs
 - **Mindful Browsing**: Encourages intentional YouTube usage rather than mindless consumption
