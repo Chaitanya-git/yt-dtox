@@ -31,19 +31,14 @@
   "action": {
     "default_popup": "popup.html",
     "default_title": "YouTube Detox",
-    "default_icon": {
-      "16": "icons/icon-16.png",
-      "32": "icons/icon-32.png",
-      "48": "icons/icon-48.png",
-      "128": "icons/icon-128.png"
-    }
+    "default_icon": "icons/icon.ico"
   },
   
   "icons": {
-    "16": "icons/icon-16.png",
-    "32": "icons/icon-32.png",
-    "48": "icons/icon-48.png",
-    "128": "icons/icon-128.png"
+    "16": "icons/icon.ico",
+    "32": "icons/icon.ico",
+    "48": "icons/icon.ico",
+    "128": "icons/icon.ico"
   },
   
   "web_accessible_resources": [
