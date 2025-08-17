@@ -1,0 +1,25 @@
+{ pkgs ? import <nixpkgs> {} }:
+
+pkgs.mkShell {
+  name = "orma-service";
+  venvDir = "./.venv";
+  buildInputs = with pkgs; [
+    python312
+    python312Packages.venvShellHook # for venv creation and activation by nix
+    python312Packages.pip
+    python312Packages.uv
+  ];
+
+  # Run this command, only after creating the virtual environment
+  postVenvCreation = ''
+    unset SOURCE_DATE_EPOCH
+    pip install -r requirements.txt
+  '';
+
+  # Now we can execute any commands within the virtual environment.
+  # This is optional and can be left out to run pip manually.
+  postShellHook = ''
+    # allow pip to install wheels
+    unset SOURCE_DATE_EPOCH
+  '';
+}
