@@ -221,7 +221,6 @@ zip -r yt-dtox-chrome.zip . -x "*.git*" "README.md" "*.js" "*.md"
 
 - **Issues**: Report bugs and feature requests via GitHub Issues
 - **Documentation**: See browser-specific READMEs in `/firefox` and `/chrome` directories
-- **Development**: Check `CLAUDE.md` for detailed development guidelines
 
 ## 🏆 Acknowledgments
 
