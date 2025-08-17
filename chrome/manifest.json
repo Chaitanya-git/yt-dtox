@@ -4,6 +4,8 @@
   "version": "1.0.0",
   "description": "Prevent YouTube doomscrolling by blocking shorts and managing tabs mindfully",
   
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyoutube1detox2extension3key4for5chrome6store7upload8process9",
+  
   "permissions": [
     "storage",
     "tabs",

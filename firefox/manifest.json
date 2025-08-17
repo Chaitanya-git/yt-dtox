@@ -4,6 +4,12 @@
   "version": "1.0.0",
   "description": "Prevent YouTube doomscrolling by blocking shorts and managing tabs mindfully",
   
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "youtube-detox@mindful-browsing.org"
+    }
+  },
+  
   "permissions": [
     "storage",
     "tabs",
